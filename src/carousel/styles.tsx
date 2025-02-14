@@ -1,0 +1,51 @@
+export const styles = {
+    container: {
+        display: "flex",
+        overflowX: "auto",
+        width: "100vw",
+        padding: "1rem",
+        scrollSnapType: "x mandatory",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
+    },
+    spacer: {
+        flex: "0 0 auto",
+        width: "50vw",
+        height: "1px"
+    },
+    carouselItem: (isSelected: boolean) => ({
+        flex: "0 0 auto",
+        width: "150px",
+        marginRight: "1rem",
+        scrollSnapAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        cursor: "pointer",
+        transform: isSelected ? 'scale(1.2)' : 'scale(1)',
+        transition: 'transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease',
+        opacity: isSelected ? 1 : 0.5,
+        filter: isSelected ? 'none' : 'grayscale(80%)',
+    }),
+    characterName: {
+        marginTop: "0.5rem",
+        marginBottom: "0.5rem",
+        borderRadius: "4px",
+        color: "#fff",
+        width: "90%",
+        textAlign: "center",
+        height: "24px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        padding: "0 4px",
+        lineHeight: "24px",
+        fontSize: "14px",
+    },
+    characterImage: {
+        width: "120px",
+        height: "120px",
+        borderRadius: "8px",
+        objectFit: "cover",
+    }
+} as const;
