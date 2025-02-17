@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { DataGrid, GridColDef, GridFilterModel, getGridStringOperators} from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCharacters } from '../hooks/useCharacter';
 const PAGE_SIZE = 20;
 
