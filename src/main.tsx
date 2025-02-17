@@ -18,7 +18,7 @@ const client = new ApolloClient({
 
 createRoot(document.getElementById('root')!).render(
   <ApolloProvider client={client}>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL || ''}>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/characters/list" element={<CharactersList />} />
