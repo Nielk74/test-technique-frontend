@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Rick and Morty Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
+Check out the live version of the application here:
+🔗 [Rick and Morty Explorer](https://nielk74.github.io/test-technique-frontend/)
 
-Currently, two official plugins are available:
+## Tech Stack
+This project is built using the following technologies:
+- **React 19** – A JavaScript library for building user interfaces
+- **TypeScript** – Strongly typed JavaScript
+- **Vite** – Fast build tool for modern frontend development
+- **GraphQL** – Fetching data efficiently
+- **Apollo Client** – State management for GraphQL
+- **MUI (Material UI)** – Modern UI components
+- **React Router** – Routing for the application
+- **ESLint** – Code linting and best practices
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+To run this project locally, follow these steps:
 
-## Expanding the ESLint configuration
+### Prerequisites
+Ensure you have **Node.js** installed on your system.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Clone the Repository
+```sh
+git clone https://github.com/nielk74/test-technique-frontend.git
+cd test-technique-frontend
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Install Dependencies
+```sh
+npm install
+```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Run the Development Server
+```sh
+npm run dev
+```
+This will start the project in development mode. You can access it at `http://localhost:5173`
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Build for Production
+```sh
+npm run build
+```
+This command will generate the production-ready build.
+
+### Preview the Production Build
+```sh
+npm run preview
 ```

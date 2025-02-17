@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Carousel from './components/carousel/Carousel';
 import { Link } from 'react-router';
 import { styles } from './components/navigation/styled';
