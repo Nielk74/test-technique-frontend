@@ -13,7 +13,15 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
     const [centeredCharacterId, setCenteredCharacterId] = useState<string>("1");
     const sentinelRef = useRef<HTMLDivElement | null>(null);
 
-    const { info, characters, loading, error } = useCharacters(page);
+    const { info, characters: newCharacters, loading, error } = useCharacters(page);
+    const [characters, setCharacters] = useState<Character[]>([]);
+
+    useEffect(() => {
+        if (newCharacters?.length) {
+            setCharacters((prev) => [...prev, ...newCharacters]);
+        }
+    }, [newCharacters]);
+    
     const updateCenteredCharacter = () => {
         if (!containerRef.current) return;
         const container = containerRef.current;
