@@ -1,5 +1,5 @@
-import { Character } from './types';
-import { styles } from './styles';
+import { Character } from '../../types/commonTypes';
+import { styles } from './styled';
 
 interface CarouselItemProps {
     character: Character;

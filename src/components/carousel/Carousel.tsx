@@ -1,23 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useQuery } from "@apollo/client";
-import { Character, CarouselProps } from "./types";
-import { styles } from "./styles";
-import { GET_CHARACTERS } from "./queries";
-import { useCarouselDrag } from "../hooks/useCarouselDrag";
+import { CarouselProps } from "./Carousel.types";
+import { Character } from "../../types/commonTypes";
+import { styles } from "./styled";
+import { useCharacters } from "../../hooks/useCharacter";
+import { useCarouselDrag } from "../../hooks/useCarouselDrag";
 
 import CarouselItem from "./CarouselItem";
 
 const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
-    const [characters, setCharacters] = useState<Character[]>([]);
+    //const [characters, setCharacters] = useState<Character[]>([]);
     const [page, setPage] = useState(1);
     const [centeredCharacterId, setCenteredCharacterId] = useState<string>("1");
     const sentinelRef = useRef<HTMLDivElement | null>(null);
 
-    const { loading, error, data, fetchMore } = useQuery(GET_CHARACTERS, {
-        variables: { page },
-        notifyOnNetworkStatusChange: true,
-    });
-
+    const { info, characters, loading, error } = useCharacters(page);
     const updateCenteredCharacter = () => {
         if (!containerRef.current) return;
         const container = containerRef.current;
@@ -49,11 +45,11 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
 
     const { containerRef, handleDragStart, handleDragEnd, handleDrag, scrollToItem} = useCarouselDrag(updateCenteredCharacter);
 
-    useEffect(() => {
-        if (data?.characters?.results) {
-            setCharacters((prev) => [...prev, ...data.characters.results]);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data?.characters?.results) {
+    //         setCharacters((prev) => [...prev, ...data.characters.results]);
+    //     }
+    // }, [data]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -71,9 +67,8 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && data?.characters?.info?.next && !loading) {
-                        const nextPage = data.characters.info.next;
-                        fetchMore({ variables: { page: nextPage } });
+                    if (entry.isIntersecting && info?.next && !loading) {
+                        const nextPage = info.next;
                         setPage(nextPage);
                     }
                 });
@@ -83,7 +78,7 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
 
         observer.observe(sentinel);
         return () => sentinel && observer.unobserve(sentinel);
-    }, [data, fetchMore, loading]);
+    }, [loading]);
 
 
     if (error) return <p>Error: {error.message}</p>;

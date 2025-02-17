@@ -4,10 +4,10 @@ import {
   InMemoryCache,
   ApolloProvider
 } from '@apollo/client';
-import Carousel from './carousel/Carousel';
+import Carousel from './components/carousel/Carousel';
 
 const client = new ApolloClient({
-  uri: 'https://rickandmortyapi.com/graphql', // Replace with your API URL
+  uri: 'https://rickandmortyapi.com/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -17,7 +17,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
         Character ID: {characterId}
-        {/* <Character characterId={characterId} /> */}
         <Carousel setCharacterId={setCharacterId} />
     </ApolloProvider>
   )
