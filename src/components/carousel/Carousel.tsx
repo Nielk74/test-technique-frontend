@@ -8,7 +8,6 @@ import { useCarouselDrag } from "../../hooks/useCarouselDrag";
 import CarouselItem from "./CarouselItem";
 
 const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
-    //const [characters, setCharacters] = useState<Character[]>([]);
     const [page, setPage] = useState(1);
     const [centeredCharacterId, setCenteredCharacterId] = useState<string>("1");
     const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -21,7 +20,7 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
             setCharacters((prev) => [...prev, ...newCharacters]);
         }
     }, [newCharacters]);
-    
+
     const updateCenteredCharacter = () => {
         if (!containerRef.current) return;
         const container = containerRef.current;
@@ -52,12 +51,6 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
     };
 
     const { containerRef, handleDragStart, handleDragEnd, handleDrag, scrollToItem} = useCarouselDrag(updateCenteredCharacter);
-
-    // useEffect(() => {
-    //     if (data?.characters?.results) {
-    //         setCharacters((prev) => [...prev, ...data.characters.results]);
-    //     }
-    // }, [data]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -100,7 +93,6 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
 
         >
             <style>{`.carousel-container::-webkit-scrollbar { display: none; }`}</style>
-            <div style={styles.spacer} />
             {characters.map((character) => (
                 <CarouselItem
                 key={character.id}

@@ -8,11 +8,6 @@ export const styles = {
         msOverflowStyle: "none",
         scrollbarWidth: "none",
     },
-    spacer: {
-        flex: "0 0 auto",
-        width: "50vw",
-        height: "1px"
-    },
     carouselItem: (isSelected: boolean) => ({
         flex: "0 0 auto",
         width: "150px",
