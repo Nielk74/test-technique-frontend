@@ -5,6 +5,7 @@ import {
   ApolloProvider
 } from '@apollo/client';
 import Carousel from './components/carousel/Carousel';
+import { Link } from 'react-router';
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -17,7 +18,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
         Character ID: {characterId}
-        <Carousel setCharacterId={setCharacterId} />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h2>Characters</h2>
+          <Carousel setCharacterId={setCharacterId} />
+          <Link to="/characters/list">{`View more >`}</Link>
+        </div>
     </ApolloProvider>
   )
 }
