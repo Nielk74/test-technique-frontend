@@ -59,3 +59,38 @@ export const useCharacters = (page: number = 1, filter: FilterCharacter = {}) =>
     error,
   };
 };
+
+export const useCharacterDetails = (id: number) => {
+  const { data, loading, error } = useQuery<{ character: Character }>(
+    gql`
+      query GetCharacter($id: ID!) {
+        character(id: $id) {
+          image
+          name
+          status
+          species
+          type
+          episode {
+            id
+          }
+          origin {
+            name
+          }
+          location {
+            name
+          }
+        }
+      }
+    `,
+    {
+      variables: { id },
+      fetchPolicy: "cache-first",
+    }
+  );
+
+  return {
+    character: data?.character,
+    loading,
+    error,
+  };
+};

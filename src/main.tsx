@@ -8,6 +8,7 @@ import './index.css'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import CharactersList from './pages/CharactersList.tsx'
+import CharacterDetails from './pages/CharacterDetails.tsx';
 
 
 const client = new ApolloClient({
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/characters/list" element={<CharactersList />} />
+        <Route path="/characters/:characterId" element={<CharacterDetails />} />
       </Routes>
     </BrowserRouter>
   </ApolloProvider>
