@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { CarouselProps } from "./Carousel.types";
+import { useState, useEffect, useRef } from "react";
 import { Character } from "../../types/commonTypes";
 import { styles } from "./styled";
 import { useCharacters } from "../../hooks/useCharacter";
@@ -7,7 +6,7 @@ import { useCarouselDrag } from "../../hooks/useCarouselDrag";
 
 import CarouselItem from "./CarouselItem";
 
-const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
+const Carousel = () => {
     const [page, setPage] = useState(1);
     const [centeredCharacterId, setCenteredCharacterId] = useState<string>("1");
     const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -45,7 +44,6 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
             const id = (closestItem as HTMLElement).getAttribute('data-character-id');
             if (id && id !== centeredCharacterId) {
                 setCenteredCharacterId(id);
-                setCharacterId(parseInt(id, 10));
             }
         }
     };
@@ -99,7 +97,6 @@ const Carousel: React.FC<CarouselProps> = ({ setCharacterId }) => {
                 character={character}
                 isSelected={centeredCharacterId === character.id}
                 onSelect={() => {
-                    setCharacterId(parseInt(character.id, 10));
                     setCenteredCharacterId(character.id);
                     scrollToItem(character.id);
                 }}
